@@ -11,25 +11,22 @@ class testApp : public ofBaseApp {
 		void setup();
 		void update();
 		void draw();
-        ofTexture myTexture;
-        ofVideoPlayer myVideo;
         bool frameByframe;
     
-        string paths[26] = {"movies/hummingbird_singlecolorkey_1.mp4", "movies/sf58_bridge.mp4",
-                            "movies/chi_skyline1_blur.mp4", "movies/49th_otherside.mp4",
-                            "movies/sf58_city.mp4", "movies/keyedslowfuckingbirds.mp4",
-                            "movies/pancakes.mp4", "movies/bfast.mp4",
-                            "movies/49th_otherside.mp4", "movies/berries.mp4",
-                            "movies/powell_station.mp4", "movies/sad_girl.mp4",
-                            "movies/eggs.mp4", "movies/street_lamp.mp4",
-                            "movies/SLOWFUCKINGBIRDS.mp4", "movies/sf58_trolley.mp4",
-                            "movies/sf58_lombard.mp4", "movies/sf_trolley.mp4",
-                            "movies/sf_fog.mp4", "movies/FUCKINGBIRDS.mp4",
-                            "movies/hummingbird_colorrangekey.mp4", "movies/coffee.mp4",
-                            "movies/chicago2.mp4", "movies/bfast.mp4",
-                            "movies/alley.mp4", "movies/49th.mp4"};
+    string paths[31] = {"movies/49th_c.mov","movies/49th_otherside_c.mov","movies/alley_c.mov",
+                        "movies/berries_c.mov","movies/bfast_c.mov","movies/cake_decorating_compressed.mov",
+                        "movies/chicago2_c.mov","movies/coffee_c.mov",
+                        "movies/doughnuts_frying_c.mov","movies/doughnuts_on_conveyer_belt_c.mov","movies/dripping_donut_masked_c.mov",
+                        "movies/eggs_c.mov","movies/FUCKINGBIRDS_c.mov","movies/hummingbird_colorrangekey_c.mov","movies/hummingbird_singlecolorkey_c.mov",
+                        "movies/icing_loop_c.mov","movies/pancakes_c.mov","movies/pink_cake_compressed.mov",
+                        "movies/powell_station_c.mov","movies/sad_girl_c.mov","movies/selecting_cake.mov",
+                        "movies/sf58_bridge_c.mov","movies/sf58_city_c.mov","movies/sf58_lombard_c.mov",
+                        "movies/sf58_trolley_c.mov","movies/sf_cityscape_e.mov","movies/sf_fog_c.mov","movies/sf_trolley_c.mov",
+                        "movies/street_lamp_c.mov","movies/trimming_cake_compressed.mov","movies/turtle_chillin(sloppy_masking)_c.mov"
+                        /*"movies/flowersBitch.mp4", "movies/moreBUsh.mp4", "movies/topsy_turvy.mp4", "movies/abstract_trees.mp4", "movies/wall.mp4", "movies/stripes_trees.mp4", "movies/sidewalk_grass.mp4", "movies/shadows_sidewalk.mp4", "movies/grass_light.mp4", "movies/brick_wall.mp4", "movies/80DegreeWeather.mp4", "movies/iDontUseSound.mp4"*/};
         std::vector<layer*> layers;
-    
+    vector<ofVideoPlayer> movies;
+    int totalVideos = 31;
         int w, h, numLayers;
     
 };

@@ -2,8 +2,7 @@
 //  layer.h
 //  artVideo
 //
-//  Created by Alyssa Pappas on 4/30/13.
-//  Copyright (c) 2013 The University of Chicago. All rights reserved.
+//  Created by Alyssa Pappas on 4/30/13
 //
 
 #ifndef artVideo_layer_h
@@ -16,21 +15,19 @@
 class layer {
     
 public:
-    //methods
+    void pixelManipulation();
     void update();
     void draw();
     
-    //constructor
+    //layer(ofVideoPlayer * vid);
     layer(string path);
-    
-    //vars
-    ofTexture           myTexture;
     ofVideoPlayer       myVideo;
+    ofTexture           myTexture;
+    //ofVideoPlayer   *    myVideo;
     bool                frameByframe;
     bool                finished;
-    int 			w, h, a, xPos, yPos, scale, threshold;
-    unsigned char * videoPixels;
-    unsigned char * pixels;
+    int                 w, h, a, xPos, yPos, scale, threshold, channels;
+    unsigned char       * layerPixels, * pixels;
     
 };
 

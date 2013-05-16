@@ -7,17 +7,30 @@ void testApp::setup(){
 	ofBackground(255,255,255);
 	ofSetVerticalSync(true);
 	frameByframe = false;
-    int size = rand() % 26 + 10;
-    int len = paths->size();
-    int p = rand() % 26; // choose random video
+    int size = 1;//rand() % totalVideos + 8;
+    //int len = paths->size();
+    int channels = rand() % 6;
+    int p = rand() % totalVideos; // choose random video
+    
+    /*for(int i = 0; i < totalVideos; i++){ //preload all vids
+        ofVideoPlayer vid;
+        vid.setPixelFormat(OF_PIXELS_RGB);
+        vid.loadMovie( paths[i] );
+        vid.setLoopState(OF_LOOP_NONE);
+        movies.push_back( vid );
+    }*/
+    
     for (int i = 0; i < size; i++) {
-        
+        //layer * newLayer = new layer(&movies[p]);
         layer * newLayer = new layer(paths[p]);
+        newLayer->channels = channels;
         layers.push_back(newLayer);
-        p = rand() % 26;
+        p = rand() % totalVideos;
     }
     
     numLayers = layers.size();
+    
+
 }
 
 //--------------------------------------------------------------
@@ -25,19 +38,20 @@ void testApp::update(){
     
     ofBackground(255,255,255);
     
-    //int len = layers.size();
-    for (int i = 0; i < numLayers; i++) {
-        if (layers[i]->finished) {
-            layers[i]->myVideo.close();
-            layers[i]->myVideo.closeMovie();
-            delete layers[i];
+    //for (int i = 0; i < numLayers; i++) {
+    for(vector<layer*>::iterator it = layers.begin(); it != layers.end(); ++it){
+        if ((*it)->finished) { // if video finished deallocate layer & choose new
             
-            layer * newLayer = new layer(paths[rand() % 26]);
-            layers.erase (layers.begin()+i);
+            (*it)->myVideo.close();
+            (*it)->myTexture.clear();
+            delete (*it)->layerPixels;
+            delete * it;
+            layers.erase(it);
+            
+            layer * newLayer = new layer(paths[rand() % totalVideos]); //layer(&movies[rand() % totalVideos]);
             layers.push_back(newLayer);
-            //layers[i] = newLayer;
         } else {
-            layers[i]->update();
+            (*it)->update();
         }
     }
     
@@ -51,11 +65,10 @@ void testApp::draw(){
 	
     ofEnableAlphaBlending();
     
-    //int len = layers.size();
-    for (int i = 0; i < numLayers; i++) {
-        layers[i]->draw();
+    //for (int i = 0; i < numLayers; i++) {
+    for(vector<layer*>::iterator it = layers.begin(); it != layers.end(); ++it){
+        (*it)->draw();
     }
-
     ofDisableAlphaBlending();
     
     
