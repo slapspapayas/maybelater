@@ -19,11 +19,10 @@ public:
     void update();
     void draw();
     
-    //layer(ofVideoPlayer * vid);
-    layer(string path);
-    ofVideoPlayer       myVideo;
+    layer(ofVideoPlayer * vid);
+    
     ofTexture           myTexture;
-    //ofVideoPlayer   *    myVideo;
+    ofVideoPlayer   *   myVideo;
     bool                frameByframe;
     bool                finished;
     int                 w, h, a, xPos, yPos, scale, threshold, channels;

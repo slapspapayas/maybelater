@@ -73,25 +73,16 @@ void layer::pixelManipulation() {
 //--------------------------------------------------------------
 
 
-layer::layer(string path){
-	ofBackground(255,255,255);
-	ofSetVerticalSync(true);
+layer::layer(ofVideoPlayer * vid){
 	frameByframe = false;
     finished = false;
     
-	// rgba doesn't actually work :(
-    myVideo.setPixelFormat(OF_PIXELS_RGB);
+    myVideo = vid;
+    myVideo->setPosition(0);
+    myVideo->play();
     
-    // set video path
-    myVideo.loadMovie(path);
-    myVideo.setLoopState(OF_LOOP_NONE);
-    //play video so can get pixels to manipulate for each frame
-    //myVideo = vid;
-    //myVideo->setPosition(0);
-    myVideo.play();
-    
-    w = myVideo.getWidth();
-	h = myVideo.getHeight();
+    w = myVideo->getWidth();
+	h = myVideo->getHeight();
     a = rand() % 255 + 50; // choose opacity
     threshold = rand() % 255; // choose what range to key
     
@@ -110,7 +101,7 @@ layer::layer(string path){
 	
     myTexture.allocate(w, h, GL_RGBA);
 	
-    pixels = myVideo.getPixels();
+    pixels = myVideo->getPixels();
     layerPixels = new unsigned char [w*h*4];
     pixelManipulation();
     
@@ -123,8 +114,8 @@ void layer::update(){
     
     ofBackground(255,255,255);
     
-    myVideo.update();
-    myVideo.getIsMovieDone() ? finished = true : finished = false;
+    myVideo->update();
+    myVideo->getIsMovieDone() ? finished = true : finished = false;
     pixelManipulation();
 
     myTexture.loadData(layerPixels, w, h, GL_RGBA);
@@ -132,17 +123,8 @@ void layer::update(){
 
 //--------------------------------------------------------------
 void layer::draw(){
-    // 	blending has to be enabled 
-	// 	for transparency to work
-	
-	ofEnableAlphaBlending();
 
     myTexture.draw(xPos>>1, yPos>>1, w*scale, h*scale);
-    
-	ofDisableAlphaBlending();
-    
-    
-    
     
 }
 
