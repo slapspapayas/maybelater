@@ -27,7 +27,7 @@ class artVideoApp : public ofBaseApp {
         "movies/dripping_donut_masked_c.mov",
         "movies/eggs_c.mov",
         "movies/flag_c.mov",
-        "movies/FUCKINGBIRDS_c.mov",
+        "movies/BIRDS_c.mov",
         "movies/house_c.mov",
         "movies/hummingbird_colorrangekey_c.mov",
         "movies/hummingbird_singlecolorkey_c.mov",
@@ -51,7 +51,7 @@ class artVideoApp : public ofBaseApp {
         "movies/trimming_cake_compressed.mov",
         "movies/turtle_chillin(sloppy_masking)_c.mov",
         "movies/turtle_in_grass_c.mov"
-                        /*"movies/flowersBitch.mp4", "movies/moreBUsh.mp4", "movies/topsy_turvy.mp4", "movies/abstract_trees.mp4", "movies/wall.mp4", "movies/stripes_trees.mp4", "movies/sidewalk_grass.mp4", "movies/shadows_sidewalk.mp4", "movies/grass_light.mp4", "movies/brick_wall.mp4", "movies/80DegreeWeather.mp4", "movies/iDontUseSound.mp4"*/};
+    };
     
     int color_channels[38] = {0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1,2,3,4,5,0,1};
     std::vector<layer*> layers;
